@@ -1,43 +1,67 @@
 {
     "keyboard_name": "pizzapad",
+    "maintainer": "0x0agon",
+    "manufacturer": "8centlabs",
     "url": "https://www.github.com/0x0agon/pizzapad",
-    "maintainer": "b_pennies",
-    "usb": {
-        "device_version": "0.1.0"
-    },
-    "rgb_matrix": {
-        "driver": "ws2812",
-        "timeout": 300000
-    },
-    "matrix_pins": {
-        "cols": ["C6", "D7", "E6", "B4", "B5"],
-        "rows": ["F4", "F5", "F6", "F7"]
-    },
-    "diode_direction": "COL2ROW",
-    "encoder": {
-        "rotary": [
-            {"pin_a": "B2", "pin_b": "D4"}
-        ]
-    },
+    "bootloader_instructions": "Press the button to the left of the microcontroller marked RESET",
+    "tags": ["split", "rgb"],
+
+    "development_board": "promicro",
+    "pin_compatible": "promicro",
+
     "bootmagic": {
-        "matrix": [3, 0]
+        "matrix": [0, 0]
     },
-    "ws2812": {
-        "pin": "D1"
+
+    "diode_direction": "COL2ROW",
+    "matrix_pins": {
+        "cols": ["C6", "D7", "E6"],
+        "rows": ["F4", "F5"]
     },
-    "processor": "atmega32u4",
-    "bootloader": "caterina",
+
     "layouts": {
         "LAYOUT": {
             "layout": [
+                {"matrix": [0, 0], "x": 0, "y": 0},
                 {"matrix": [0, 1], "x": 1, "y": 0},
                 {"matrix": [0, 2], "x": 2, "y": 0},
-                {"matrix": [0, 3], "x": 3, "y": 0},
 
+                {"matrix": [1, 0], "x": 0, "y": 1},
                 {"matrix": [1, 1], "x": 1, "y": 1},
-                {"matrix": [1, 2], "x": 2, "y": 1},
-                {"matrix": [1, 3], "x": 3, "y": 1}
+                {"matrix": [1, 2], "x": 2, "y": 1}
             ]
         }
+    },
+
+    "encoder": {
+        "rotary": [
+            {
+                "pin_a": "B3",
+                "pin_b": "D4",
+                "resolution": 2
+            }
+        ]
+    },
+
+    "usb": {
+        "device_version": "0.1.0",
+        "pid": "0x23B0",
+        "vid": "0x0A0A"
+    },
+
+    "rgb_matrix": {
+        "driver": "ws2812",
+        "timeout": 300000,
+        "layout": [
+            {"matrix": [0, 0], "x": 0, "y": 0, "flags": 2},
+            {"matrix": [0, 1], "x": 1, "y": 0, "flags": 2},
+            {"matrix": [0, 2], "x": 2, "y": 0, "flags": 2},
+            {"matrix": [1, 0], "x": 0, "y": 1, "flags": 2},
+            {"matrix": [1, 1], "x": 1, "y": 1, "flags": 2},
+            {"matrix": [1, 2], "x": 2, "y": 1, "flags": 2}
+        ]
+    },
+    "ws2812": {
+        "pin": "D1"
     }
 }

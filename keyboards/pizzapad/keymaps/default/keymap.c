@@ -21,39 +21,29 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /*
             BASE LAYER - Num Pad
-    /-----------------------------------------------------`
-    |             |    7    |    8    |    9    |    -    |
-    |             |---------|---------|---------|---------|
-    |             |    4    |    5    |    6    |    +    |
-    |             |---------|---------|---------|---------|
-    |             |    1    |    2    |    3    |    *    |
-    |-------------|---------|---------|---------|---------|
-    |    Mute     |  TT(1)  |    0    |         |  Enter  |
-    \-----------------------------------------------------'
+    /-------------------------------------------`
+    |             |    1    |    2    |    3    |
+    |             |---------|---------|---------|
+    |             |    4    |    5    |   TT1   |
+    \-------------------------------------------'
     */
     [0] = LAYOUT(
-                    KC_P7,      KC_P8,    KC_P9,             KC_PMNS,
-                    KC_P4,      KC_P5,    KC_P6,             KC_PPLS,
-                    KC_P1,      KC_P2,    KC_P3,             KC_PAST,
-        KC_MUTE,    TT(1),      KC_P0,    _______,           KC_ENTER
+                    KC_P1,      KC_P2,    KC_P3,
+                    KC_P4,      KC_P5,    TO(1)
     ),
     /*
             SUB LAYER  - RGB controls, Modes on encoder
-    /-----------------------------------------------------`
-    |             | On/Off  | Bright- | Bright+ |  Reset  |
-    |             |---------|---------|---------|---------|
-    |             |         | Hue-    | Hue+    |         |
-    |             |---------|---------|---------|---------|
-    |             |         | Sat-    | Sat+    |         |
-    |-------------|---------|---------|---------|---------|
-    |             |  TT(1)  | Effect- | Effect+ |         |
-    \-----------------------------------------------------'
+    /-------------------------------------------`
+    |             | On/Off  | Bright- | Bright+ |
+    |             |---------|---------|---------|
+    |             | Hue-    | Hue+    |  TT0    |
+    \-------------------------------------------'
     */
     [1] = LAYOUT(
-                    RGB_TOG,    RGB_VAD,     RGB_VAI,      QK_BOOT,
-                    KC_NO,      RGB_HUD,     RGB_HUI,      KC_NO,
-                    KC_NO,      RGB_SAD,     RGB_SAI,      KC_NO,
-        KC_NO,      _______,    RGB_SPD,     RGB_SPI,      KC_NO
+                    // RGB_TOG,    RGB_VAD,     RGB_VAI,
+                    // RGB_HUD,     RGB_HUI,    TT(0)
+                    KC_P6,      KC_P7,    KC_P8,
+                    KC_P9,      KC_P0,    TO(0)
     ),
 };
 // clang-format on
@@ -63,9 +53,11 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
         case 0:
             // main layer, volume
             if (clockwise) {
-                tap_code(KC_VOLU);
+                // tap_code(KC_VOLU);
+                tap_code(KC_SLSH);
             } else {
-                tap_code(KC_VOLD);
+                // tap_code(KC_VOLD);
+                tap_code(KC_BSLS);
             }
             break;
         default:
