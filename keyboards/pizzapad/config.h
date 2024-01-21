@@ -16,6 +16,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #pragma once
 
+#define DEBUG
+
+// #define ENCODERS_PAD_A { D4 }
+// #define ENCODERS_PAD_B { B2 }
+#define DEBOUNCE 10
+
 #define MATRIX_COLS 3
 #define MATRIX_ROWS 2
 
@@ -23,11 +29,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #define LED_00 D1
 
 #define RGB_MATRIX_LED_COUNT 6
+#define RGBLED_NUM 2
+#define WS2812_DI_PIN D1
+#define RGBLIGHT_DEFAULT_HUE 5
+#define RGBLIGHT_DEFAULT_VAL 200
+#define RGBLIGHT_DEFAULT_SAT 200
+#define RGBLIGHT_DEFAULT_ON true
+
+// #define RGBLIGHT_DEFAULT_MODE RGBLIGHT_MODE_BREATHING
+
 
 // Cleanup RGB
 #ifdef RGB_MATRIX_ENABLE
 
-#define RGB_DISABLE_WHEN_USB_SUSPENDED
+// #define RGB_DISABLE_WHEN_USB_SUSPENDED
 
 #define RGB_MATRIX_FRAMEBUFFER_EFFECTS  // Heatmap, Rain
 #define RGB_MATRIX_KEYPRESSES

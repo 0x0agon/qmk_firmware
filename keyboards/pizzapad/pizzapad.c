@@ -24,7 +24,7 @@ led_config_t g_led_config = {{// Key Matrix to LED Index
                               {0, 0},
                               {75, 0},
                               {149, 0},
-			      
+
                               {224, 0},
                               {224, 21},
                               {149, 21}},
@@ -35,6 +35,15 @@ led_config_t g_led_config = {{// Key Matrix to LED Index
 void keyboard_pre_init_kb(void) {
     // Set LED IO as outputs
     // setPinOutput(LED_00);
+
+    // Set the encoder A pin (B2) to input with pull-up resistor
+//    DDRB &= ~(1<<2);
+//    PORTB &= ~(1<<2);
+//
+//    // Set the encoder B pin (D4) to input with pull-up resistor
+//    DDRD &= ~(1<<4);
+//    PORTD &= ~(1<<4);  // disable the pull up for testing
+
     keyboard_pre_init_user();
 }
 
@@ -72,9 +81,46 @@ void matrix_init_kb(void) {
     matrix_init_user();
 }
 
+void keyboard_post_init_user(void) {
+    debug_enable=true;
+    debug_matrix=true;
+    debug_keyboard=true;
+}
+
 // bool led_update_kb(led_t led_state) {
 //     if (!led_update_user(led_state)) return false;
 //     // put your keyboard LED indicator (ex: Caps Lock LED) toggling code here
 //     writePin(LED_01, !led_state.num_lock);
 //     return true;
 // }
+bool encoder_update_kb(uint8_t index, bool clockwise) {
+    uprintf("Encoder time!\n");
+    if (!encoder_update_user(index, clockwise)) {
+        uprintf("returning \n");
+        return false; /* Don't process further events if user function exists and returns false */
+    }
+    if (index == 0) { /* First encoder */
+        if (clockwise) {
+            // tap_code(KC_VOLU);
+            uprintf("Encoder CW\n");
+            tap_code(KC_SLSH);
+        } else {
+            // tap_code(KC_VOLD);
+            uprintf("Encoder CCW\n");
+            tap_code(KC_BSLS);
+        }
+    } else if (index == 1) { /* Second encoder */
+	    // ignore this
+        // if (clockwise) {
+        //     // tap_code(KC_VOLU);
+        //     uprintf("Encoder CW\n");
+        //     tap_code(KC_SLSH);
+        // } else {
+        //     // tap_code(KC_VOLD);
+        //     uprintf("Encoder CCW\n");
+        //     tap_code(KC_BSLS);
+        // }
+	
+    }
+    return true;
+}

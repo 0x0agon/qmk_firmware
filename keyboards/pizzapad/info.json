@@ -36,9 +36,9 @@
     "encoder": {
         "rotary": [
             {
-                "pin_a": "B3",
+                "pin_a": "B2",
                 "pin_b": "D4",
-                "resolution": 2
+                "resolution": 4
             }
         ]
     },
@@ -49,18 +49,6 @@
         "vid": "0x0A0A"
     },
 
-    "rgb_matrix": {
-        "driver": "ws2812",
-        "timeout": 300000,
-        "layout": [
-            {"matrix": [0, 0], "x": 0, "y": 0, "flags": 2},
-            {"matrix": [0, 1], "x": 1, "y": 0, "flags": 2},
-            {"matrix": [0, 2], "x": 2, "y": 0, "flags": 2},
-            {"matrix": [1, 0], "x": 0, "y": 1, "flags": 2},
-            {"matrix": [1, 1], "x": 1, "y": 1, "flags": 2},
-            {"matrix": [1, 2], "x": 2, "y": 1, "flags": 2}
-        ]
-    },
     "ws2812": {
         "pin": "D1"
     }
